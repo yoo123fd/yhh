@@ -23,21 +23,44 @@ do
         DrawingText.Size = 13
         DrawingText.Color = Color3.fromRGB(0, 255, 0)
 
-        local Con; Con = game:GetService("RunService").RenderStepped:Connect(function()
-            if self.Enabled and Mess:FindFirstChildOfClass("Decal") and Mess:FindFirstChildOfClass("Decal").Transparency < 1 and Mess:FindFirstChildOfClass("Decal"):FindFirstChildOfClass("ObjectValue") and Mess and Mess.Parent ~= nil and Mess ~= nil and Mess:IsDescendantOf(workspace:WaitForChild("Street Messes")) then
-                local ScreenPosition, OnScreen = workspace.CurrentCamera:WorldToScreenPoint(Mess.Position)
-                if ScreenPosition and OnScreen then
-                    DrawingText.Text = "Street Mess"
-                    DrawingText.Visible = true 
-                    DrawingText.Position = Vector2.new(ScreenPosition.X, ScreenPosition.Y) 
-                else
-                    DrawingText.Visible = false 
-                end
-            else
-                DrawingText.Visible = false
-                Con:Disconnect()
-            end
-        end)  
+		local function ye()
+		    local Con; Con = game:GetService("RunService").RenderStepped:Connect(function()
+				if self.Enabled and Mess:FindFirstChildOfClass("Decal") and Mess:FindFirstChildOfClass("Decal").Transparency < 1 and Mess:FindFirstChildOfClass("Decal"):FindFirstChildOfClass("ObjectValue") and Mess and Mess.Parent ~= nil and Mess ~= nil and Mess:IsDescendantOf(workspace:WaitForChild("Street Messes")) then
+					local ScreenPosition, OnScreen = workspace.CurrentCamera:WorldToScreenPoint(Mess.Position)
+					if ScreenPosition and OnScreen then
+						DrawingText.Text = "Street Mess"
+						DrawingText.Visible = true 
+						DrawingText.Position = Vector2.new(ScreenPosition.X, ScreenPosition.Y) 
+					else
+						DrawingText.Visible = false 
+					end
+				else
+					DrawingText.Visible = false
+					Con:Disconnect()
+				end
+			end)
+		end
+		
+		ye()
+		
+		table.insert(self.Cache, Mess.ChildAdded:Connect(function(child)
+			if child:IsA("Decal") then	
+				ye()
+				table.insert(self.Cache, child:GetPropertyChangedSignal("Transparency"):Connect(function()
+					if child.Transparency < 1 then
+						ye()
+					end 
+				end))
+			end
+		end))
+		
+		if Mess:FindFirstChildOfClass("Decal") then
+			table.insert(self.Cache, Mess:GetPropertyChangedSignal("Transparency"):Connect(function()
+				if Mess.Transparency < 1 then
+					ye()
+				end 
+			end))
+		end
     end
 
     function StreetMessesESP:Draw()
