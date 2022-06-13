@@ -24,7 +24,7 @@ do
         DrawingText.Color = Color3.fromRGB(0, 255, 0)
 
         local Con; Con = game:GetService("RunService").RenderStepped:Connect(function()
-            if self.Enabled and Mess and Mess.Parent ~= nil and Mess ~= nil and Mess:IsDescendantOf(workspace:WaitForChild("Street Messes")) then
+            if self.Enabled and Mess:FindFirstChildOfClass("Decal") and Mess:FindFirstChildOfClass("Decal").Transparency < 1 and Mess:FindFirstChildOfClass("Decal"):FindFirstChildOfClass("ObjectValue") and Mess and Mess.Parent ~= nil and Mess ~= nil and Mess:IsDescendantOf(workspace:WaitForChild("Street Messes")) then
                 local ScreenPosition, OnScreen = workspace.CurrentCamera:WorldToScreenPoint(Mess.Position)
                 if ScreenPosition and OnScreen then
                     DrawingText.Text = "Street Mess"
@@ -37,7 +37,7 @@ do
                 DrawingText.Visible = false
                 Con:Disconnect()
             end
-        end) 
+        end)  
     end
 
     function StreetMessesESP:Draw()
@@ -48,7 +48,7 @@ do
 
             self.StreetMessesESPAddedConnection = workspace:WaitForChild("Street Messes").ChildAdded:Connect(function(child)
                 self:TagStreetMess(child)
-            end)
+            end) 
         else
             if self.StreetMessesESPAddedConnection then
                 self.StreetMessesESPAddedConnection:Disconnect()  
@@ -60,7 +60,7 @@ do
 
             table.clear(self.Cache)
         end 
-    end
+    end 
 end
 
 do
