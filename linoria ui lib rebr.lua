@@ -2351,7 +2351,7 @@ function Library:Notify(Text, Time)
 
         wait(0.4);
 
-        NotifyOuter:Destroy();
+        NotifyOuter.Destroy(NotifyOuter);
     end);
 end;
 
