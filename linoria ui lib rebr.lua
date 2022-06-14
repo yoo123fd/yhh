@@ -2344,13 +2344,14 @@ function Library:Notify(Text, Time)
 
     pcall(NotifyOuter.TweenSize, NotifyOuter, UDim2.new(0, XSize + 8 + 4, 0, YSize), 'Out', 'Quad', 0.4, true);
 
-    task.spawn(function()
+    task.spawn(function() 
+        print('starting', Time)
         wait(Time or 5);
-
+        print('tweening')
         pcall(NotifyOuter.TweenSize, NotifyOuter, UDim2.new(0, 0, 0, YSize), 'Out', 'Quad', 0.4, true);
-
+    
         wait(0.4);
-
+        print('destroying')
         NotifyOuter.Destroy(NotifyOuter);
     end);
 end;
