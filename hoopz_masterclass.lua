@@ -70,52 +70,85 @@ getgenv().adjustments = {
     }
 }
 
+getgenv().adjustments2 = {         
+    [59] = {
+        Power = 80,
+        Arc = Vector3.new(0, 70, 0)
+    },
+            
+    [60] = {
+        Power = 80,
+        Arc = Vector3.new(0, 68, 0)
+    },
+            
+    [61] = {
+        Power = 80,
+        Arc = Vector3.new(0, 66, 0)
+    },
+            
+    [62] = {
+        Power = 80,
+        Arc = Vector3.new(0, 64, 0)
+    },
+    
+    [63] = {
+        Power = 80,
+        Arc = Vector3.new(0, 62, 0)
+    },
+
+    [64] = {
+        Power = 85,
+        Arc = Vector3.new(0, 80, 0)
+    },
+
+    [65] = {
+        Power = 85,
+        Arc = Vector3.new(0, 78, 0)
+    },
+
+    [66] = {
+        Power = 85,
+        Arc = Vector3.new(0, 76, 0)
+    },
+
+    [67] = {
+        Power = 85,
+        Arc = Vector3.new(0, 74, 0)
+    },
+    
+    [68] = {
+        Power = 85,
+        Arc = Vector3.new(0, 70, 0)
+    },
+
+    [69] = {
+        Power = 85,
+        Arc = Vector3.new(0, 66, 0)
+    },
+
+    [70] = {
+        Power = 85,
+        Arc = Vector3.new(0, 62, 0)
+    },
+
+    [71] = {
+        Power = 85,
+        Arc = Vector3.new(0, 50, 0)
+    }
+}
+
+
 local Players = game:GetService("Players")
 local Client = Players.LocalPlayer 
 
 local Aimbot = {}
 local AutoDribble = {}
-local SpeedBoost = {} 
 local BallReach = {}
 local RangeIndicator = {}
 local AutoGuard = {}
 local BallMags = {}
 
-do
-	SpeedBoost.Speed = 16 
-	SpeedBoost.Connections = {}
-	
-	local Character = Client.Character or Client.CharacterAdded:Wait()
-	local Humanoid = Character:WaitForChild("Humanoid")
-	
-	table.insert(SpeedBoost.Connections, Client.CharacterAdded:Connect(function(Character)
-		local Humanoid = Character:WaitForChild("Humanoid")
-		Humanoid.WalkSpeed = SpeedBoost.Speed 
-		
-		table.insert(SpeedBoost.Connections, Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
-			if SpeedBoost.Speed > 16 and Humanoid.WalkSpeed ~= SpeedBoost.Speed and Humanoid.WalkSpeed > 1 then
-				Humanoid.WalkSpeed = SpeedBoost.Speed 
-			end 
-		end)) 	
-	end)) 
-	
-	table.insert(SpeedBoost.Connections, Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
-		if SpeedBoost.Speed > 16 and Humanoid.WalkSpeed ~= SpeedBoost.Speed and Humanoid.WalkSpeed > 1 and Humanoid.WalkSpeed < 17 then
-			Humanoid.WalkSpeed = SpeedBoost.Speed 
-		end 
-	end))  
-	
-	Humanoid.WalkSpeed = SpeedBoost.Speed  
-	
-	function SpeedBoost:NewValue()
-        local Character = Client.Character or Client.CharacterAdded:Wait()
-        local Humanoid = Character:WaitForChild("Humanoid")
 
-        if Humanoid then
-            Humanoid.WalkSpeed = self.Speed
-        end
-    end
-end 
 
 
 do
@@ -174,6 +207,8 @@ do
 	Aimbot.FPSConnection = nil 
 	Aimbot.JumpTimer = true 
 	Aimbot.OriginatedPosition = nil
+	Aimbot.LowArc = true 
+	Aimbot.HighArc = false
 
 	function Aimbot:GetClosestRim()
         local Distance = math.huge 
@@ -213,14 +248,14 @@ do
     function Aimbot:GetTrajectory()
         local Rim, Distance = self:GetClosestRim()
 
-        if adjustments[math.floor(Distance) + 1] then
+        if Aimbot.LowArc and adjustments[math.floor(Distance) + 1] or Aimbot.HighArc and adjustments2[math.floor(Distance)] then
             RangeIndicator:Tag(true)
         else
             RangeIndicator:Tag(false)
         end
 
-        if adjustments[math.floor(Distance)] then 
-            return Vector3.new(Rim.Position.X, Rim.Position.Y + adjustments[math.round(Distance)].Arc.Y, Rim.Position.Z), adjustments[math.round(Distance)].Power, Distance
+        if Aimbot.LowArc and adjustments[math.floor(Distance)] or Aimbot.HighArc and adjustments2[math.floor(Distance)] then 
+            return Vector3.new(Rim.Position.X, Rim.Position.Y + (Aimbot.LowArc and adjustments[math.floor(Distance)].Arc.Y or Aimbot.HighArc and adjustments2[math.floor(Distance)].Arc.Y), Rim.Position.Z), (Aimbot.LowArc and adjustments[math.floor(Distance)].Power or Aimbot.HighArc and adjustments2[math.floor(Distance)].Power), Distance
         end   
     end
 
@@ -282,7 +317,7 @@ do
 						if A then
 							NoInput()
 						end
-						Humanoid.WalkSpeed = SpeedBoost.Speed
+						Humanoid.WalkSpeed = 16
 					end
 
 					self.Requesting = false  
@@ -748,8 +783,7 @@ local GroupBoxes = {
 	},
 
 	Physics = {
-		SpeedBoost = Tabs.Physics:AddLeftGroupbox("Speed"),
-		TouchInterests = Tabs.Physics:AddRightGroupbox("Touch Interests")
+		TouchInterests = Tabs.Physics:AddLeftGroupbox("Touch Interests")
 	},
 
 	Defense = {
@@ -767,14 +801,12 @@ GroupBoxes.Ball.SilentAim:AddToggle("RangeIndicator", {
 	Default = RangeIndicator.Enabled,
 })
 
-GroupBoxes.Physics.SpeedBoost:AddSlider("SpeedValue", {
-	Text = "WalkSpeed",
-	Default = SpeedBoost.Speed,
-	Min = 16,
-	Max = 40,
-	Rounding = 2,
-	Compact = false 
+GroupBoxes.Ball.SilentAim:AddToggle("HighArc", {
+	Text = "High Arc",
+	Default = Aimbot.HighArc,
 })
+
+
 
 GroupBoxes.Ball.AutoHandles:AddToggle("AutoHandlesEnabled", {
 	Text = "Enabled",
@@ -833,10 +865,6 @@ Options.HandlesDropdown:OnChanged(function()
 	AutoDribble.Combination = typeof(Options.HandlesDropdown.Value) ~= "table" and Options.HandlesDropdown.Value or Options.HandlesDropdown.Value[1]
 end)
 
-Options.SpeedValue:OnChanged(function()
-	SpeedBoost.Speed = Options.SpeedValue.Value 
-	SpeedBoost:NewValue()
-end)
 
 Toggles.SilentAimEnabled:OnChanged(function()
 	Aimbot:NewValue(Toggles.SilentAimEnabled.Value)
@@ -844,4 +872,14 @@ end)
 
 Toggles.RangeIndicator:OnChanged(function()
 	RangeIndicator.Enabled = Toggles.RangeIndicator.Value 
+end)
+
+Toggles.HighArc:OnChanged(function()
+	if Toggles.HighArc.Value == true then
+		Aimbot.HighArc = true 
+		Aimbot.LowArc = false 
+	else
+		Aimbot.HighArc = false 
+		Aimbot.LowArc = true
+	end
 end)
