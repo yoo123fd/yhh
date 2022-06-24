@@ -1,143 +1,143 @@
 getgenv().adjustments = {         
-    [59] = {
-        Power = 75,
-        Arc = Vector3.new(0, 30, 0)
-    },
-            
-    [60] = {
-        Power = 75,
-        Arc = Vector3.new(0, 32.5, 0)
-    },
-            
-    [61] = {
-        Power = 75,
-        Arc = Vector3.new(0, 35, 0)
-    },
-            
-    [62] = {
-        Power = 80,
-        Arc = Vector3.new(0, 25, 0)
-    },
-    
-    [63] = {
-        Power = 80,
-        Arc = Vector3.new(0, 27, 0)
-    },
+	[59] = {
+		Power = 75,
+		Arc = Vector3.new(0, 30, 0)
+	},
 
-    [64] = {
-        Power = 80,
-        Arc = Vector3.new(0, 30, 0)
-    },
+	[60] = {
+		Power = 75,
+		Arc = Vector3.new(0, 32.5, 0)
+	},
 
-    [65] = {
-        Power = 80,
-        Arc = Vector3.new(0, 32, 0)
-    },
+	[61] = {
+		Power = 75,
+		Arc = Vector3.new(0, 35, 0)
+	},
 
-    [66] = {
-        Power = 80,
-        Arc = Vector3.new(0, 34, 0)
-    },
+	[62] = {
+		Power = 80,
+		Arc = Vector3.new(0, 25, 0)
+	},
 
-    [67] = {
-        Power = 85,
-        Arc = Vector3.new(0, 25, 0)
-    },
-    
-    [68] = {
-        Power = 85,
-        Arc = Vector3.new(0, 30, 0)
-    },
+	[63] = {
+		Power = 80,
+		Arc = Vector3.new(0, 27, 0)
+	},
 
-    [69] = {
-        Power = 85,
-        Arc = Vector3.new(0, 32, 0)
-    },
+	[64] = {
+		Power = 80,
+		Arc = Vector3.new(0, 30, 0)
+	},
 
-    [70] = {
-        Power = 85,
-        Arc = Vector3.new(0, 32, 0)
-    },
+	[65] = {
+		Power = 80,
+		Arc = Vector3.new(0, 32, 0)
+	},
 
-    [71] = {
-        Power = 85,
-        Arc = Vector3.new(0, 36, 0)
-    },
+	[66] = {
+		Power = 80,
+		Arc = Vector3.new(0, 34, 0)
+	},
 
-    [72] = {
-        Power = 85,
-        Arc = Vector3.new(0, 40, 0)
-    }
+	[67] = {
+		Power = 85,
+		Arc = Vector3.new(0, 25, 0)
+	},
+
+	[68] = {
+		Power = 85,
+		Arc = Vector3.new(0, 30, 0)
+	},
+
+	[69] = {
+		Power = 85,
+		Arc = Vector3.new(0, 32, 0)
+	},
+
+	[70] = {
+		Power = 85,
+		Arc = Vector3.new(0, 32, 0)
+	},
+
+	[71] = {
+		Power = 85,
+		Arc = Vector3.new(0, 36, 0)
+	},
+
+	[72] = {
+		Power = 85,
+		Arc = Vector3.new(0, 40, 0)
+	}
 }
 
 getgenv().adjustments2 = {         
-    [59] = {
-        Power = 80,
-        Arc = Vector3.new(0, 70, 0)
-    },
-            
-    [60] = {
-        Power = 80,
-        Arc = Vector3.new(0, 68, 0)
-    },
-            
-    [61] = {
-        Power = 80,
-        Arc = Vector3.new(0, 66, 0)
-    },
-            
-    [62] = {
-        Power = 80,
-        Arc = Vector3.new(0, 64, 0)
-    },
-    
-    [63] = {
-        Power = 80,
-        Arc = Vector3.new(0, 62, 0)
-    },
+	[59] = {
+		Power = 80,
+		Arc = Vector3.new(0, 70, 0)
+	},
 
-    [64] = {
-        Power = 85,
-        Arc = Vector3.new(0, 80, 0)
-    },
+	[60] = {
+		Power = 80,
+		Arc = Vector3.new(0, 68, 0)
+	},
 
-    [65] = {
-        Power = 85,
-        Arc = Vector3.new(0, 78, 0)
-    },
+	[61] = {
+		Power = 80,
+		Arc = Vector3.new(0, 66, 0)
+	},
 
-    [66] = {
-        Power = 85,
-        Arc = Vector3.new(0, 76, 0)
-    },
+	[62] = {
+		Power = 80,
+		Arc = Vector3.new(0, 64, 0)
+	},
 
-    [67] = {
-        Power = 85,
-        Arc = Vector3.new(0, 74, 0)
-    },
-    
-    [68] = {
-        Power = 85,
-        Arc = Vector3.new(0, 70, 0)
-    },
+	[63] = {
+		Power = 80,
+		Arc = Vector3.new(0, 62, 0)
+	},
 
-    [69] = {
-        Power = 85,
-        Arc = Vector3.new(0, 66, 0)
-    },
+	[64] = {
+		Power = 85,
+		Arc = Vector3.new(0, 80, 0)
+	},
 
-    [70] = {
-        Power = 85,
-        Arc = Vector3.new(0, 62, 0)
-    },
+	[65] = {
+		Power = 85,
+		Arc = Vector3.new(0, 78, 0)
+	},
 
-    [71] = {
-        Power = 85,
-        Arc = Vector3.new(0, 50, 0)
-    }
+	[66] = {
+		Power = 85,
+		Arc = Vector3.new(0, 76, 0)
+	},
+
+	[67] = {
+		Power = 85,
+		Arc = Vector3.new(0, 74, 0)
+	},
+
+	[68] = {
+		Power = 85,
+		Arc = Vector3.new(0, 70, 0)
+	},
+
+	[69] = {
+		Power = 85,
+		Arc = Vector3.new(0, 66, 0)
+	},
+
+	[70] = {
+		Power = 85,
+		Arc = Vector3.new(0, 62, 0)
+	},
+
+	[71] = {
+		Power = 85,
+		Arc = Vector3.new(0, 50, 0)
+	}
 }
 
-
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/wally-rblx/LinoriaLib/main/Library.lua"))()
 local Players = game:GetService("Players")
 local Client = Players.LocalPlayer 
 
@@ -155,14 +155,14 @@ do
 	RangeIndicator.Enabled = false 
 	RangeIndicator.Active = false 
 	RangeIndicator.CurrentConnection = nil 
-	
+
 	RangeIndicator.Part = Instance.new("Part") 
-    RangeIndicator.Part.Size = Vector3.new(2.3, 2.3, 1.3)
-    RangeIndicator.Part.Color = Color3.fromRGB(0, 255, 0)
-    RangeIndicator.Part.Material = Enum.Material.Neon
-    RangeIndicator.Part.Anchored = true 
-    RangeIndicator.Part.CanCollide = false 
-	
+	RangeIndicator.Part.Size = Vector3.new(2.3, 2.3, 1.3)
+	RangeIndicator.Part.Color = Color3.fromRGB(0, 255, 0)
+	RangeIndicator.Part.Material = Enum.Material.Neon
+	RangeIndicator.Part.Anchored = true 
+	RangeIndicator.Part.CanCollide = false 
+
 	function RangeIndicator:Tag(boolean)
 		self.Active = boolean 
 		if self.Active and not self.CurrentConnection then
@@ -187,17 +187,17 @@ local ContextActionService = game:GetService("ContextActionService")
 local FREEZE_ACTION = "freezeMovement"
 local A = false 
 local function NoInput()
-    A = not A 
-    if A then
-        ContextActionService:BindAction(
-            FREEZE_ACTION,
-            function() return Enum.ContextActionResult.Sink end,
-            false,
-            unpack(Enum.PlayerActions:GetEnumItems())
-        )
-    else
-        ContextActionService:UnbindAction(FREEZE_ACTION)
-    end
+	A = not A 
+	if A then
+		ContextActionService:BindAction(
+			FREEZE_ACTION,
+			function() return Enum.ContextActionResult.Sink end,
+			false,
+			unpack(Enum.PlayerActions:GetEnumItems())
+		)
+	else
+		ContextActionService:UnbindAction(FREEZE_ACTION)
+	end
 end
 
 do
@@ -211,72 +211,70 @@ do
 	Aimbot.HighArc = false
 
 	function Aimbot:GetClosestRim()
-        local Distance = math.huge 
-        local ClosestRim = nil 
+		local Distance = math.huge 
+		local ClosestRim = nil 
 
-        for _, Court in ipairs(workspace.Courts:GetChildren()) do
-            for _, Part in ipairs(Court:GetChildren()) do
-                if Part:IsA("BasePart") and Part.Size == Vector3.new(.25, .25, .25) and Part.BrickColor == BrickColor.new("Really red") then
-                    local RootPart = Client.Character and Client.Character:WaitForChild("HumanoidRootPart")
-                    local Distance2 = RootPart and ((self.OriginatedPosition or RootPart.Position) - Part.Position).Magnitude 
+		for _, Court in ipairs(workspace.Courts:GetChildren()) do
+			for _, Part in ipairs(Court:GetChildren()) do
+				if Part:IsA("BasePart") and Part.Size == Vector3.new(.25, .25, .25) and Part.BrickColor == BrickColor.new("Really red") then
+					local RootPart = Client.Character and Client.Character:WaitForChild("HumanoidRootPart")
+					local Distance2 = RootPart and ((self.OriginatedPosition or RootPart.Position) - Part.Position).Magnitude 
 
-                    if Distance2 and Distance2 < Distance then
-                        ClosestRim = Part 
-                        Distance = Distance2 
-                    end
-                end
-            end
-        end
+					if Distance2 and Distance2 < Distance then
+						ClosestRim = Part 
+						Distance = Distance2 
+					end
+				end
+			end
+		end
 
-        for _, Court in ipairs(workspace.PracticeArea:GetChildren()) do
-            for _, Part in ipairs(Court:GetChildren()) do
-                if Part:IsA("BasePart") and Part.Size == Vector3.new(.25, .25, .25) and Part.BrickColor == BrickColor.new("Really red") then
-                    local RootPart = Client.Character and Client.Character:WaitForChild("HumanoidRootPart")
-                    local Distance2 = RootPart and ((self.OriginatedPosition or RootPart.Position) - Part.Position).Magnitude 
+		for _, Court in ipairs(workspace.PracticeArea:GetChildren()) do
+			for _, Part in ipairs(Court:GetChildren()) do
+				if Part:IsA("BasePart") and Part.Size == Vector3.new(.25, .25, .25) and Part.BrickColor == BrickColor.new("Really red") then
+					local RootPart = Client.Character and Client.Character:WaitForChild("HumanoidRootPart")
+					local Distance2 = RootPart and ((self.OriginatedPosition or RootPart.Position) - Part.Position).Magnitude 
 
-                    if Distance2 and Distance2 < Distance then
-                        ClosestRim = Part 
-                        Distance = Distance2 
-                    end
-                end
-            end
-        end
+					if Distance2 and Distance2 < Distance then
+						ClosestRim = Part 
+						Distance = Distance2 
+					end
+				end
+			end
+		end
 
 		return ClosestRim, Distance 
-    end
-	
-    function Aimbot:GetTrajectory()
-        local Rim, Distance = self:GetClosestRim()
+	end
 
-        if Aimbot.LowArc and adjustments[math.floor(Distance) + 1] or Aimbot.HighArc and adjustments2[math.floor(Distance)] then
-            RangeIndicator:Tag(true)
-        else
-            RangeIndicator:Tag(false)
-        end
+	function Aimbot:GetTrajectory()
+		local Rim, Distance = self:GetClosestRim()
 
-        if Aimbot.LowArc and adjustments[math.floor(Distance)] or Aimbot.HighArc and adjustments2[math.floor(Distance)] then 
-            return Vector3.new(Rim.Position.X, Rim.Position.Y + (Aimbot.LowArc and adjustments[math.floor(Distance)].Arc.Y or Aimbot.HighArc and adjustments2[math.floor(Distance)].Arc.Y), Rim.Position.Z), (Aimbot.LowArc and adjustments[math.floor(Distance)].Power or Aimbot.HighArc and adjustments2[math.floor(Distance)].Power), Distance
-        end   
-    end
+		if Aimbot.LowArc and adjustments[math.floor(Distance) + 1] or Aimbot.HighArc and adjustments2[math.floor(Distance)] then
+			RangeIndicator:Tag(true)
+		else
+			RangeIndicator:Tag(false)
+		end
+
+		if Aimbot.LowArc and adjustments[math.floor(Distance)] or Aimbot.HighArc and adjustments2[math.floor(Distance)] then 
+			return Vector3.new(Rim.Position.X, Rim.Position.Y + (Aimbot.LowArc and adjustments[math.floor(Distance)].Arc.Y or Aimbot.HighArc and adjustments2[math.floor(Distance)].Arc.Y), Rim.Position.Z), (Aimbot.LowArc and adjustments[math.floor(Distance)].Power or Aimbot.HighArc and adjustments2[math.floor(Distance)].Power), Distance
+		end   
+	end
 
 	function Aimbot:GetNormal()
 		local Rim, Distance = self:GetClosestRim()
 
-        if adjustments[math.floor(Distance)] then 
-            return (Vector3.new(Rim.Position.X, Rim.Position.Y + adjustments[math.floor(Distance)].Arc.Y, Rim.Position.Z)), adjustments[math.floor(Distance)].Power, Distance
-        end   
+		if adjustments[math.floor(Distance)] then 
+			return (Vector3.new(Rim.Position.X, Rim.Position.Y + adjustments[math.floor(Distance)].Arc.Y, Rim.Position.Z)), adjustments[math.floor(Distance)].Power, Distance
+		end   
 	end
 
 	function Aimbot:NewValue(boolean)
 		self.Enabled = boolean 
-		print("called")
 		if self.Enabled then
 			local Humanoid = Client.Character and Client.Character:WaitForChild("Humanoid") 
 			self.CurrentConnection = Humanoid.Jumping:Connect(function() 
 				local Ball = Client.Character and Client.Character:FindFirstChild("Basketball")
 				if not self.OriginatedPosition then
 					self.OriginatedPosition = Humanoid.Parent.PrimaryPart.Position
-					print(self.OriginatedPosition)
 				end 
 				if self:GetTrajectory() and Ball then 
 					local g, p = self:GetTrajectory()
@@ -302,7 +300,7 @@ do
 										RaycastParams1 = RaycastParams.new()
 										RaycastParams1.FilterType = Enum.RaycastFilterType.Blacklist
 										RaycastParams1.FilterDescendantsInstances = {Humanoid.Parent}
-									
+
 										Raycast = workspace:Raycast(Humanoid.Parent:FindFirstChild("Torso").Position, Vector3.new(0, -10, 0), RaycastParams1)
 										task.wait()
 									until (Humanoid.Parent:FindFirstChild("Torso").Position.Y - Raycast.Position.Y) > 9 
@@ -311,7 +309,7 @@ do
 							end
 						end)
 					end
-					
+
 					repeat task.wait() until not Client.Character:FindFirstChild("Basketball") 
 					if Humanoid then
 						if A then
@@ -349,17 +347,17 @@ end
 do 
 	local function IgnoreList()
 		local IgnoreList = {}
-		
+
 		for i, Player in ipairs(game:GetService("Players"):GetPlayers()) do
 			if Player.Character then
 				table.insert(IgnoreList, Player.Character)
 			end
 		end
-		
+
 		for a,b in pairs(game:GetService("CollectionService"):GetTagged("Walls")) do
 			table.insert(IgnoreList, b)
 		end
-		
+
 		return IgnoreList
 	end
 
@@ -373,14 +371,14 @@ do
 		local Yea, Yessir = GetMousePosition() 
 		return (Yessir - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).unit 
 	end
-	 
+
 	local old; old = hookfunction(game:GetService("ReplicatedStorage").shootingEvent.FireServer, newcclosure(function(self, ...) 
 		local args = {...}
-		
-        if Aimbot.Requesting then
+
+		if Aimbot.Requesting then
 			local X, Y, Z 
 			local Yeahh = Yea1()
-		
+
 			for i,v in pairs(args[3]) do
 				if v == Yeahh.X then
 					X = i 
@@ -390,16 +388,19 @@ do
 					Z = i
 				end
 			end  
-	            
-	        print(X, Y, Z)
-	
-	
-            local Trajectory = Aimbot:GetTrajectory() and (Aimbot:GetTrajectory() - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Unit
-            if Trajectory then
-                args[3][X] = Trajectory.X 
-    			args[3][Y] = Trajectory.Y 
-    			args[3][Z] = Trajectory.Z 
-            end
+
+
+
+			local Trajectory = Aimbot:GetTrajectory() and (Aimbot:GetTrajectory() - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Unit
+			local _, _, d = Aimbot:GetTrajectory()
+			
+			if Trajectory then
+				--Library.Notify(Library, "Shooting at " .. tostring(math.floor(d))) 
+				print(tostring(math.floor(d)))
+				args[3][X] = Trajectory.X 
+				args[3][Y] = Trajectory.Y 
+				args[3][Z] = Trajectory.Z 
+			end
 		end
 		return old(self, table.unpack(args))
 	end))
@@ -408,114 +409,114 @@ end
 do
 	AutoDribble.Enabled = false 
 	AutoDribble.Combination = "Randomized" 
-    AutoDribble.LastUse = 0
+	AutoDribble.LastUse = 0
 
 	function AutoDribble:GetClosestPlayer()
-        local ClosestDistance = math.huge 
-        local ClosestPlayer = nil 
+		local ClosestDistance = math.huge 
+		local ClosestPlayer = nil 
 
-        for _, Player in ipairs(Players:GetPlayers()) do 
-            if Player == Client then continue end
-            local Root = Player.Character and Player.Character.PrimaryPart
-            if Root then
-                local MyRoot = Client.Character and Client.Character.PrimaryPart
-                if MyRoot then
-                    local Distance = (MyRoot.Position - Root.Position).Magnitude
-                    if Distance < ClosestDistance then
-                        ClosestDistance = Distance 
-                        ClosestPlayer = Player 
-                    end
-                end
-            end
-        end
+		for _, Player in ipairs(Players:GetPlayers()) do 
+			if Player == Client then continue end
+			local Root = Player.Character and Player.Character.PrimaryPart
+			if Root then
+				local MyRoot = Client.Character and Client.Character.PrimaryPart
+				if MyRoot then
+					local Distance = (MyRoot.Position - Root.Position).Magnitude
+					if Distance < ClosestDistance then
+						ClosestDistance = Distance 
+						ClosestPlayer = Player 
+					end
+				end
+			end
+		end
 
-        return ClosestPlayer
-    end
+		return ClosestPlayer
+	end
 
 	function AutoDribble:GetClosestPartToBall()
-        local Player = self:GetClosestPlayer()
-        if Player then
-            local Character = Client.Character 
-            local Basketball = Character and Character:FindFirstChild("Basketball")
-            
-            if Basketball then
-                local Ball = Basketball:FindFirstChild("Ball")
+		local Player = self:GetClosestPlayer()
+		if Player then
+			local Character = Client.Character 
+			local Basketball = Character and Character:FindFirstChild("Basketball")
 
-                local ClosestPartLeftArmDistance = math.huge
-                local ClosestPartLeftArm 
+			if Basketball then
+				local Ball = Basketball:FindFirstChild("Ball")
 
-                local ClosestPartRightArmDistance = math.huge
-                local ClosestPartRightArm 
+				local ClosestPartLeftArmDistance = math.huge
+				local ClosestPartLeftArm 
 
-                if Player.Character then
-                    for _, Part in ipairs(Player.Character:GetChildren()) do
-                        if Part:IsA("BasePart") then
-                            local G = (Part.Position - Character:FindFirstChild("Right Arm").Position).Magnitude 
-                            if G < ClosestPartRightArmDistance then
-                                ClosestPartRightArmDistance = G 
-                                ClosestPartRightArm = Part 
-                            end
-                        end
-                    end
+				local ClosestPartRightArmDistance = math.huge
+				local ClosestPartRightArm 
 
-                    for _, Part in ipairs(Player.Character:GetChildren()) do
-                        if Part:IsA("BasePart") then
-                            local G = (Part.Position - Character:FindFirstChild("Left Arm").Position).Magnitude 
-                            if G < ClosestPartRightArmDistance then
-                                ClosestPartLeftArmDistance = G 
-                                ClosestPartLeftArm = Part 
-                            end
-                        end
-                    end 
-                    
-                    if ClosestPartRightArmDistance < (ClosestPartLeftArmDistance) then
-                        return "left"
-                    else
-                        return "right"
-                    end
-                end
-            end
-        end
-    end 
-    local VirtualInputManager = game:GetService('VirtualInputManager')
-    function Aimbot:GetEquippedBall()
-        local Character = Client.Character 
-        local Basketball = Character and Character:FindFirstChild("Basketball")
-        local LeftArmDistance = math.huge 
-        local RightArmDistance = math.huge
+				if Player.Character then
+					for _, Part in ipairs(Player.Character:GetChildren()) do
+						if Part:IsA("BasePart") then
+							local G = (Part.Position - Character:FindFirstChild("Right Arm").Position).Magnitude 
+							if G < ClosestPartRightArmDistance then
+								ClosestPartRightArmDistance = G 
+								ClosestPartRightArm = Part 
+							end
+						end
+					end
 
-        local LeftArm, RightArm, Ball = Character and Character:FindFirstChild("Left Arm"), Character and Character:FindFirstChild("Right Arm"), Basketball and Basketball:FindFirstChild("Ball")
+					for _, Part in ipairs(Player.Character:GetChildren()) do
+						if Part:IsA("BasePart") then
+							local G = (Part.Position - Character:FindFirstChild("Left Arm").Position).Magnitude 
+							if G < ClosestPartRightArmDistance then
+								ClosestPartLeftArmDistance = G 
+								ClosestPartLeftArm = Part 
+							end
+						end
+					end 
 
-        if LeftArm and RightArm and Ball then
-            LeftArmDistance = (Ball.Position - LeftArm.Position).Magnitude
-            RightArmDistance = (Ball.Position - RightArm.Position).Magnitude 
+					if ClosestPartRightArmDistance < (ClosestPartLeftArmDistance) then
+						return "left"
+					else
+						return "right"
+					end
+				end
+			end
+		end
+	end 
+	local VirtualInputManager = game:GetService('VirtualInputManager')
+	function Aimbot:GetEquippedBall()
+		local Character = Client.Character 
+		local Basketball = Character and Character:FindFirstChild("Basketball")
+		local LeftArmDistance = math.huge 
+		local RightArmDistance = math.huge
 
-            return LeftArmDistance < RightArmDistance and "Left" or "Right"
-        end
-    end
+		local LeftArm, RightArm, Ball = Character and Character:FindFirstChild("Left Arm"), Character and Character:FindFirstChild("Right Arm"), Basketball and Basketball:FindFirstChild("Ball")
 
-    game:GetService("RunService").RenderStepped:Connect(function()
-        if AutoDribble.Enabled and (tick() - AutoDribble.LastUse) >= .5 then
-            local Side = AutoDribble:GetClosestPartToBall()
-            local g = Client.Character and Client.Character:FindFirstChild("Basketball") and Client.Character:FindFirstChild("Basketball"):FindFirstChild("Ball")
-            local Ye = Client.Character and Client.Character:FindFirstChild("Left Arm")
-            local Ye2 = Client.Character and Client.Character:FindFirstChild("Right Arm")
+		if LeftArm and RightArm and Ball then
+			LeftArmDistance = (Ball.Position - LeftArm.Position).Magnitude
+			RightArmDistance = (Ball.Position - RightArm.Position).Magnitude 
 
-            local Left = {
-                "H",
-                "G",
-                --"B"
-            }
+			return LeftArmDistance < RightArmDistance and "Left" or "Right"
+		end
+	end
 
-            local Right = {
-                "H",
-                "F",
-                --"V"
-            }
-            
-        
-            if Side == "left" and Aimbot:GetEquippedBall() == "Right" or Side == "right" and Aimbot:GetEquippedBall() == "Left" then
-                if Side == "left" and Aimbot:GetEquippedBall() == "Right" then
+	game:GetService("RunService").RenderStepped:Connect(function()
+		if AutoDribble.Enabled and (tick() - AutoDribble.LastUse) >= .5 then
+			local Side = AutoDribble:GetClosestPartToBall()
+			local g = Client.Character and Client.Character:FindFirstChild("Basketball") and Client.Character:FindFirstChild("Basketball"):FindFirstChild("Ball")
+			local Ye = Client.Character and Client.Character:FindFirstChild("Left Arm")
+			local Ye2 = Client.Character and Client.Character:FindFirstChild("Right Arm")
+
+			local Left = {
+				"H",
+				"G",
+				--"B"
+			}
+
+			local Right = {
+				"H",
+				"F",
+				--"V"
+			}
+
+
+			if Side == "left" and Aimbot:GetEquippedBall() == "Right" or Side == "right" and Aimbot:GetEquippedBall() == "Left" then
+				if Side == "left" and Aimbot:GetEquippedBall() == "Right" then
 					if AutoDribble.Combination == "Randomized" then
 						local Key = Left[math.random(1, #Left)]
 						VirtualInputManager:SendKeyEvent(true, Key, false, game)
@@ -533,8 +534,8 @@ do
 						VirtualInputManager:SendKeyEvent(false, Key, false, game)  
 					end
 
-                    AutoDribble.LastUse = tick()
-                elseif Side == "right" and Aimbot:GetEquippedBall() == "Left" then
+					AutoDribble.LastUse = tick()
+				elseif Side == "right" and Aimbot:GetEquippedBall() == "Left" then
 					if AutoDribble.Combination == "Randomized" then
 						local Key = Right[math.random(1, #Right)]
 						VirtualInputManager:SendKeyEvent(true, Key, false, game)
@@ -552,15 +553,15 @@ do
 						VirtualInputManager:SendKeyEvent(false, Key, false, game)  
 					end
 
-                    AutoDribble.LastUse = tick()
-                end 
-            end
+					AutoDribble.LastUse = tick()
+				end 
+			end
 
-            if not Client.Character or not Client.Character:FindFirstChild("Basketball") then
-                AutoDribble.LastSide = ""
-            end
-        end
-    end)
+			if not Client.Character or not Client.Character:FindFirstChild("Basketball") then
+				AutoDribble.LastSide = ""
+			end
+		end
+	end)
 
 
 end
@@ -581,7 +582,7 @@ do
 
 							local Torso = Client.Character and Client.Character:FindFirstChild("Torso")
 							local OtherTorso = Player.Character and Player.Character:FindFirstChild("Torso") 
-							
+
 							if Torso and OtherTorso then
 								if (Torso.Position - OtherTorso.Position).Magnitude < ClosestDistance and OtherTorso.Parent:FindFirstChild("Ball", true) then
 									ClosestDistance = (Torso.Position - OtherTorso.Position).Magnitude
@@ -673,21 +674,21 @@ end
 do
 	function GetClosestPart(Ball)
 		if Client.Character then
-            local ClosestDistance = math.huge 
-            local ClosestPart = nil 
+			local ClosestDistance = math.huge 
+			local ClosestPart = nil 
 
-            for i,v in pairs(Client.Character:GetChildren()) do
-                if v:IsA("BasePart") then
-                    local Distance = (v.Position - Ball.Position).Magnitude
-                    if Distance < ClosestDistance then
-                        ClosestDistance = Distance 
-                        ClosestPart = v 
-                    end
-                end
-            end
+			for i,v in pairs(Client.Character:GetChildren()) do
+				if v:IsA("BasePart") then
+					local Distance = (v.Position - Ball.Position).Magnitude
+					if Distance < ClosestDistance then
+						ClosestDistance = Distance 
+						ClosestPart = v 
+					end
+				end
+			end
 
-            return ClosestPart
-        end	
+			return ClosestPart
+		end	
 	end
 
 	do
@@ -696,7 +697,7 @@ do
 		function BallMags:GetClosestBall()
 			local ClosestBall = nil 
 			local ClosestDistance = math.huge 
-			
+
 			for _, Ball in ipairs(workspace:GetChildren()) do	
 				if Ball.Name == "Basketball" and Ball:FindFirstChild("Ball") then
 					Ball = Ball:FindFirstChild("Ball") 
@@ -708,23 +709,23 @@ do
 					end
 				end
 			end
-	
+
 			return ClosestBall
 		end  
 
 	end
-	
+
 	do
 		BallReach.Distance = 0
 
 		function BallReach:GetClosestBall()
 			local ClosestBall = nil 
 			local ClosestDistance = math.huge 
-			
+
 			for _, Player in ipairs(Players:GetPlayers()) do
 				local Ball = Player.Character and Player.Character:FindFirstChild("Basketball") and Player.Character:FindFirstChild("Basketball"):FindFirstChild("Ball")
 				local RootPart = Client.Character and Client.Character:FindFirstChild("HumanoidRootPart")
-	
+
 				if Ball and RootPart then
 					local Distance = (Ball.Position - RootPart.Position).Magnitude 
 					if Distance < self.Distance and Distance < ClosestDistance then
@@ -733,7 +734,7 @@ do
 					end
 				end
 			end
-	
+
 			return ClosestBall
 		end  
 	end	
@@ -763,7 +764,6 @@ game:GetService("RunService").RenderStepped:Connect(function()
 	Aimbot:GetTrajectory()
 end)
 
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/wally-rblx/LinoriaLib/main/Library.lua"))()
 local Window = Library:CreateWindow({
 	Title = "tobiware V2",
 	Center = true, 
@@ -883,3 +883,5 @@ Toggles.HighArc:OnChanged(function()
 		Aimbot.LowArc = true
 	end
 end)
+
+Library:Notify("tobiware loaded")
