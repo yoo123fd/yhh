@@ -288,7 +288,7 @@ do
     end)
 end
 
-local Library = loadstring(game:HttpGet("https://pastebin.com/raw/mzYxYFaK"))()
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/CED5PfJS"))()
 local Window = Library:CreateWindow({
 	Title = "Football Fusion 2",
 	Center = true, 
@@ -436,4 +436,3 @@ Options.AutoJumpOFG:OnChanged(function()
     AutoJump.Distance = Options.AutoJumpOFG.Value 
 end)
 --]]
-
