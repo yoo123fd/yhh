@@ -278,7 +278,7 @@ do
                 local H = C and C:WaitForChild("Humanoid")
                 local F = C and C:WaitForChild("Head")
                 if H and F then 
-                    local H2 = math.abs((F.Position.Y - workspace:FindFirstChild("Football").Position.Y))
+                    local H2 = math.abs((F.Position.Y - workspace:FindFirstChild("Football").randomly.Y))
                     local Yurr = workspace:CalculateJumpPower(workspace.Gravity, H2)
                     Yurr = math.clamp(Yurr, 50, DynamicJump.Max)
                     H.JumpPower = Yurr
