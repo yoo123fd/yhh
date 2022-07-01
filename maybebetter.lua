@@ -73,7 +73,7 @@ do
 
 
     function Mags:Validated()
-        return Values:WaitForChild("Fumble").Value ~= true 
+        return Values:WaitForChild("Fumble").Value ~= true and Values:WaitForChild("Status").Value == "InPlay"
         --return Values:WaitForChild("Status").Value == "InPlay" and Values:WaitForChild("Fumble").Value ~= true 
     end
 
