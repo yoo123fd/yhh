@@ -61,6 +61,7 @@ local JumpBoost = {}
 local AutoDive = {}
 local AutoJump = {}
 local DynamicJump = {}
+local KickerAimbot = {}
 
 do
     Mags.Enabled = false  
@@ -72,7 +73,8 @@ do
 
 
     function Mags:Validated()
-        return Values:WaitForChild("Status").Value == "InPlay" and Values:WaitForChild("Fumble").Value ~= true 
+        return Values:WaitForChild("Fumble").Value ~= true 
+        --return Values:WaitForChild("Status").Value == "InPlay" and Values:WaitForChild("Fumble").Value ~= true 
     end
 
     function Mags:GetParams()
@@ -135,8 +137,13 @@ do
                 local Ms = (Now - Starting)
                 local X_Value = (Ms / 10) * math.pi 
                 
-                Football.CFrame = Using.CFrame * CFrame.Angles(X_Value, X_Value, X_Value)
                 Football.CanCollide = false
+                firetouchinterest(Character["Left Arm"], Football, 0)
+                firetouchinterest(Character["Right Arm"], Football, 0)
+                task.wait()
+                firetouchinterest(Character["Left Arm"], Football, 1)
+                firetouchinterest(Character["Right Arm"], Football, 1)
+                --Football.CFrame = Using.CFrame * CFrame.Angles(X_Value, X_Value, X_Value)
             else 
                 StopLoop()
             end
@@ -288,6 +295,49 @@ do
     end)
 end
 
+do
+    KickerAimbot.Enabled = false
+    KickerAimbot.Accuracy = 100
+    KickerAimbot.InThread = false
+
+    function KickerAimbot:GetAccuracyArrow(Arrows)
+        local Y = 0 
+        local Arrow1 = nil 
+
+        for _, Arrow in ipairs(Arrows) do
+            if Arrow.Position.Y.Scale > Y then
+                Y = Arrow.Position.Y.Scale
+                Arrow1 = Arrow 
+            end
+       end 
+
+       return Arrow1 
+    end
+
+    Client.PlayerGui.ChildAdded:Connect(function(child)
+        if child.Name == "KickerGui" then
+            local KickerGui = child 
+            local Meter = KickerGui:FindFirstChild("Meter")
+            local Cursor = Meter:FindFirstChild("Cursor")
+            local Arrows = {} 
+            
+            for i,v in pairs(Meter:GetChildren()) do
+                if string.find(v.Name:lower(), "arrow") then
+                    table.insert(Arrows, v)
+                end
+            end
+            
+
+            repeat task.wait() until Cursor.Position.Y.Scale < 0.02
+            mouse1click()
+            print((.03 / (KickerAimbot.Accuracy / 100)))
+            repeat task.wait() until Cursor.Position.Y.Scale >= KickerAimbot:GetAccuracyArrow(Arrows).Position.Y.Scale + (.03 / (KickerAimbot.Accuracy / 100))
+            mouse1click()
+            print("clicking")
+        end
+    end)
+end
+
 local Library = loadstring(game:HttpGet("https://pastebin.com/raw/CED5PfJS"))()
 local Window = Library:CreateWindow({
 	Title = "Football Fusion 2",
@@ -297,6 +347,7 @@ local Window = Library:CreateWindow({
 
 local Tabs = {
 	Catching = Window:AddTab("Catching"),
+    Kicking = Window:AddTab("Kicking"),
     Physics = Window:AddTab("Physics")
 }
 
@@ -305,6 +356,10 @@ local GroupBoxes = {
         Mags = Tabs.Catching:AddLeftGroupbox("Mags"),
         AutoDive = Tabs.Catching:AddRightGroupbox("AutoDive"),
         --AutoJump = Tabs.Catching:AddRightGroupbox("AutoJump")
+    },
+
+    Kicking = {
+        Aimbot = Tabs.Kicking:AddLeftGroupbox("Aimbot")
     },
 
     Physics = {
@@ -410,6 +465,28 @@ Options.DynamicJumpSlid:OnChanged(function()
     DynamicJump.Max = Options.DynamicJumpSlid.Value
 end)
 
+
+GroupBoxes.Kicking.Aimbot:AddToggle("KickerAimbotEnabled", {
+    Text = "Enabled",
+    Default = KickerAimbot.Enabled
+})
+
+GroupBoxes.Kicking.Aimbot:AddSlider("KickerAimbotAcc", {
+    Text = "Accuracy",
+    Default = KickerAimbot.Accuracy,
+    Min = 80,
+    Max = 100,
+    Rounding = 0,
+    Compact = false
+})
+
+Toggles.KickerAimbotEnabled:OnChanged(function()
+    KickerAimbot.Enabled = Toggles.KickerAimbotEnabled.Value
+end)
+
+Options.KickerAimbotAcc:OnChanged(function()
+    KickerAimbot.Accuracy = Options.KickerAimbotAcc.Value
+end)
 
 --//
 --[[
