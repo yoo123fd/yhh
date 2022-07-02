@@ -52,6 +52,7 @@ end
 local Players = game:GetService("Players")
 local Client = Players.LocalPlayer
 
+local UserInputService = game:GetService("UserInputService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Values = ReplicatedStorage:WaitForChild("Values")
 
@@ -215,7 +216,7 @@ do
 
     game:GetService("RunService").RenderStepped:Connect(function()
         if AutoDive.Enabled then
-            if AutoDive:Yes() then 
+            if AutoDive:Yes() and UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) then 
                 --print("again?")
                 keypress(0x45)
                 task.wait()
@@ -330,10 +331,8 @@ do
 
             repeat task.wait() until Cursor.Position.Y.Scale < 0.02
             mouse1click()
-            print((.03 / (KickerAimbot.Accuracy / 100)))
             repeat task.wait() until Cursor.Position.Y.Scale >= KickerAimbot:GetAccuracyArrow(Arrows).Position.Y.Scale + (.03 / (KickerAimbot.Accuracy / 100))
             mouse1click()
-            print("clicking")
         end
     end)
 end
