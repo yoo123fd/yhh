@@ -150,7 +150,7 @@ do
             end
         end 
         
-        for i = 1, (10 * self.Power) do
+        for i = 1, (self.Power) do
             table.insert(Connections, game:GetService("RunService").RenderStepped:Connect(BallUpdate)) 
             table.insert(Connections, game:GetService("RunService").Stepped:Connect(BallUpdate)) 
             table.insert(Connections, game:GetService("RunService").Heartbeat:Connect(BallUpdate)) 
@@ -408,7 +408,7 @@ GroupBoxes.Catching.Mags:AddSlider("MagsPower", {
     Text = "Power",
     Default = Mags.Power,
     Min = 1,
-    Max = 5,
+    Max = 50,
     Rounding = 0,
     Compact = false 
 })
