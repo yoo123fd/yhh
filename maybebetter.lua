@@ -2,7 +2,7 @@ do
     local old; old = hookmetamethod(game, "__index", newcclosure(function(b, c)
         if b == workspace:FindFirstChild("Football") then
             if string.lower(c) == "position" then
-                return Vector3.new()
+                --return Vector3.new()
             elseif string.lower(c) == "randomly" then
                 return old(b, "Position")
             end
@@ -63,6 +63,8 @@ local AutoDive = {}
 local AutoJump = {}
 local DynamicJump = {}
 local KickerAimbot = {}
+local Grapher = {}
+local Booster = {}
 
 do
     Mags.Enabled = false  
@@ -72,6 +74,7 @@ do
     Mags.DistanceOffGround = 15
     Mags.Power = 1
 
+    Mags.KeyCode = Enum.KeyCode.T
 
     function Mags:Validated()
         return Values:WaitForChild("Fumble").Value ~= true and Values:WaitForChild("Status").Value == "InPlay"
@@ -337,6 +340,171 @@ do
     end)
 end
 
+do
+    Grapher.Enabled = false 
+    
+    Grapher.CastStep = 1 / 60
+    Grapher.MaxCast = 20
+
+    Grapher.Params = RaycastParams.new()
+    Grapher.Params.IgnoreWater = true
+    Grapher.Params.FilterType = Enum.RaycastFilterType.Whitelist
+
+    Grapher.Marker = Instance.new("Part")
+    Grapher.Marker.Anchored = true
+    Grapher.Marker.Material = Enum.Material.Neon
+    Grapher.Marker.CanCollide = false 
+    Grapher.Marker.Size = Vector3.new(7, 1, 7)
+
+    Grapher.MarkerCache = {}
+
+    function Grapher:GetCollidables()
+        local A = {}
+        for _, G in pairs(workspace:GetDescendants()) do
+            if G:IsA("BasePart") and G.CanCollide == true then
+                table.insert(A, G)
+            end
+        end
+        return A 
+    end
+
+    function Grapher:GetLanding(origin, velocity, c)
+        local Elapsed = 0
+        local LastPos = origin
+
+        self.Params.FilterDescendantsInstances = self:GetCollidables()
+
+        while true do 
+            Elapsed += self.CastStep
+            
+            local nPos = origin + velocity * Elapsed - Vector3.new(0, .5 * 28 * Elapsed ^ 2, 0)
+            local Result = workspace:Raycast(LastPos, nPos - LastPos, self.Params)
+            LastPos = nPos
+
+            if Result then 
+                return Result.Position
+            elseif Elapsed >= self.MaxCast then
+                return
+            end
+        end
+    end
+
+    function Grapher:WipeMarkers()
+        for i, Part in pairs(self.MarkerCache) do
+            if Part:IsA("BasePart") or Part:IsA("Highlight") and Part.Parent ~= nil then
+                Part:Destroy()
+                table.remove(self.MarkerCache, i)
+            end
+        end
+    end
+
+    workspace.ChildAdded:Connect(function(child)
+        if child.Name == "Football" and child:IsA("BasePart") and Grapher.Enabled then
+            if not Grapher.Enabled then return end 
+            local con; con = child:GetPropertyChangedSignal("Velocity"):Connect(function()
+                local land = Grapher:GetLanding(child.Position, child.Velocity, child)
+                if land then
+                    local a = Grapher.Marker:Clone()
+                    a.Parent = workspace 
+                    a.Position = land
+                    table.insert(Grapher.MarkerCache, a)
+
+                    local Highlight = Instance.new("Highlight", game.CoreGui)
+                    Highlight.Adornee = a
+                    Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                    Highlight.Enabled = true
+
+                    table.insert(Grapher.MarkerCache, Highlight)
+                    
+                    task.spawn(function()
+                        repeat task.wait() until child.Parent ~= workspace
+                        for i, Part in pairs(Grapher.MarkerCache) do
+                            if Part:IsA("BasePart") or Part:IsA("Highlight") and Part.Parent ~= nil then
+                                Part:Destroy()
+                                table.remove(Grapher.MarkerCache, i)
+                            end
+                        end
+                    end)
+
+                    con:Disconnect()
+                end
+            end)
+        end
+    end)
+end
+
+do
+    Booster.Enabled = false 
+    --Booster.KeyCode = Enum.KeyCode.Q
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/LegoHacker1337/legohacks/main/PhysicsServiceOnClient.lua"))()
+    local PhysicsService = game:GetService("PhysicsService")
+    PhysicsService:CreateCollisionGroup("Heads")
+
+    function Booster:Clear(Head)
+        for i,v in pairs(Head:GetChildren()) do
+            if not v:IsA("SpecialMesh") then v:Destroy() end 
+        end
+    end
+
+    game:GetService("RunService").RenderStepped:Connect(function()
+        for _, Player in ipairs(Players:GetPlayers()) do
+            if Player ~= Client and Player.Character then
+                if Player.Character:FindFirstChild("Head") then
+                    if not Player.Character:FindFirstChild("CloneHead") then
+                        Player.Character:FindFirstChild("Head").CanCollide = false
+                        local ClonedHead = Player.Character:FindFirstChild("Head"):Clone()
+                        ClonedHead.Parent = Player.Character
+                        ClonedHead.Name = "CloneHead"
+                        ClonedHead.Transparency = 1
+                        Booster:Clear(ClonedHead)
+                        ClonedHead.Size = Vector3.new(5, 5, 5)
+                        ClonedHead.CFrame = Player.Character:FindFirstChild("Head").CFrame
+                        PhysicsService:SetPartCollisionGroup(ClonedHead, "Heads")
+                        PhysicsService:CollisionGroupSetCollidable("Heads", "Heads", false)  
+
+                        local Weld = Instance.new("Weld", ClonedHead)
+                        Weld.Part0 = Player.Character:FindFirstChild("Head")
+                        Weld.Part1 = ClonedHead
+                    else  
+                        Player.Character:FindFirstChild("Head").CanCollide = false
+                        local ClonedHead = Player.Character:FindFirstChild("CloneHead")
+                        ClonedHead.CFrame = Player.Character:FindFirstChild("Head").CFrame
+                        ClonedHead.Size = Vector3.new(5, 5, 5)
+                        ClonedHead.Transparency = 1
+                        
+                        if Booster.Enabled then
+                            if Client.Character and Client.Character.PrimaryPart then
+                                local g = RaycastParams.new()
+                                g.FilterType = Enum.RaycastFilterType.Blacklist
+                                g.FilterDescendantsInstances = {Client.Character, Player.Character}
+
+                                local Raycast = workspace:Raycast(Client.Character.PrimaryPart.Position, Vector3.new(0, -10, 0), g)
+          
+                                if Raycast and not Raycast.Instance.Parent:FindFirstChildOfClass("Humanoid") and not Raycast.Instance.Parent.Parent:FindFirstChildOfClass("Humanoid") then
+                                    ClonedHead.CanCollide = false
+                                else 
+                                    if Client.Character.Head.Position.Y > (Player.Character.Head.Position.Y + 1) then
+                                        ClonedHead.CanCollide = true                             
+                                    end
+                                end
+                            end
+                        else
+                            ClonedHead.CanCollide = false
+                        end 
+                        
+
+
+                        PhysicsService:SetPartCollisionGroup( Player.Character:FindFirstChild("Head"), "Heads")
+                        PhysicsService:SetPartCollisionGroup(ClonedHead, "Heads")
+                        PhysicsService:CollisionGroupSetCollidable("Heads", "Heads", false)  
+                    end
+                end
+            end
+        end
+    end)
+end
+
 local Library = loadstring(game:HttpGet("https://pastebin.com/raw/CED5PfJS"))()
 local Window = Library:CreateWindow({
 	Title = "Football Fusion 2",
@@ -354,6 +522,8 @@ local GroupBoxes = {
     Catching = {
         Mags = Tabs.Catching:AddLeftGroupbox("Mags"),
         AutoDive = Tabs.Catching:AddRightGroupbox("AutoDive"),
+        Grapher = Tabs.Catching:AddLeftGroupbox("Grapher"),
+        Boost = Tabs.Catching:AddRightGroupbox("Boost")
         --AutoJump = Tabs.Catching:AddRightGroupbox("AutoJump")
     },
 
@@ -403,6 +573,7 @@ GroupBoxes.Catching.Mags:AddSlider("MagsDistanceOFG", {
 Options.MagsDistanceOFG:OnChanged(function()
     Mags.DistanceOffGround = Options.MagsDistanceOFG.Value 
 end)
+
 --// 
 GroupBoxes.Catching.Mags:AddSlider("MagsPower", {
     Text = "Power",
@@ -417,6 +588,39 @@ Options.MagsPower:OnChanged(function()
     Mags.Power = Options.MagsPower.Value 
 end)
 
+GroupBoxes.Catching.Mags:AddLabel('Toggle key'):AddKeyPicker("MagsToggleKey", {
+    Default = "Q",
+    Mode = "Toggle",
+    Text = "Toggle key",
+    NoUI = false
+})
+
+Options.MagsToggleKey:OnClick(function()
+    Toggles.MagsEnabled:SetValue(not Toggles.MagsEnabled.Value)
+end)
+
+--//
+GroupBoxes.Catching.Boost:AddToggle("BoostEnabled", {
+    Text = "Enabled",
+    Default = Booster.Enabled,
+    Tooltip = "Enable boost"
+})
+
+GroupBoxes.Catching.Boost:AddLabel('Toggle key'):AddKeyPicker("BoostToggleKey", {
+    Default = "T",
+    Mode = "Toggle",
+    Text = "Toggle key",
+    NoUI = false
+})
+
+Toggles.BoostEnabled:OnChanged(function()
+    Booster.Enabled = Toggles.BoostEnabled.Value
+end)
+
+Options.BoostToggleKey:OnClick(function()
+    Toggles.BoostEnabled:SetValue(not Toggles.BoostEnabled.Value)
+end)
+
 --//
 GroupBoxes.Catching.AutoDive:AddToggle("AutoDiveEnabled", {
     Text = "Enabled",
@@ -426,7 +630,7 @@ GroupBoxes.Catching.AutoDive:AddToggle("AutoDiveEnabled", {
 
 Toggles.AutoDiveEnabled:OnChanged(function()
     AutoDive.Enabled = Toggles.AutoDiveEnabled.Value 
-end)
+end) 
 --// 
 GroupBoxes.Catching.AutoDive:AddSlider("AutoDiveOFG", {
     Text = "Peak",
@@ -441,6 +645,20 @@ Options.AutoDiveOFG:OnChanged(function()
     AutoDive.Distance = Options.AutoDiveOFG.Value 
 end) 
 
+
+GroupBoxes.Catching.Grapher:AddToggle("GraphEnabled", {
+    Text = "Enabled",
+    Default = Grapher.Enabled,
+    Tooltip = "Shows where the ball is going to land (note: this is not 100% accurate due to the ball being old and not true to projectile motion)"
+})
+
+Toggles.GraphEnabled:OnChanged(function()
+    Grapher.Enabled = Toggles.GraphEnabled.Value
+
+    if not Grapher.Enabled then
+        Grapher:WipeMarkers()
+    end
+end)
 
 GroupBoxes.Physics.Properties:AddToggle("DynamicJump", {
     Text = "Dynamic Jump",
@@ -486,6 +704,8 @@ end)
 Options.KickerAimbotAcc:OnChanged(function()
     KickerAimbot.Accuracy = Options.KickerAimbotAcc.Value
 end)
+
+
 
 --//
 --[[
