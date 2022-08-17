@@ -343,7 +343,7 @@ end
 do
     Grapher.Enabled = false 
     
-    Grapher.CastStep = 1 / 60
+    Grapher.CastStep = 3 / 60
     Grapher.MaxCast = 20
 
     Grapher.Params = RaycastParams.new()
@@ -354,7 +354,9 @@ do
     Grapher.Marker.Anchored = true
     Grapher.Marker.Material = Enum.Material.Neon
     Grapher.Marker.CanCollide = false 
-    Grapher.Marker.Size = Vector3.new(7, 1, 7)
+    Grapher.Marker.Size = Vector3.new(1, 7, 1)
+    Grapher.Marker.Color = Color3.fromRGB(255, 0, 0)
+    Grapher.Marker.Transparency = .5
 
     Grapher.MarkerCache = {}
 
@@ -374,27 +376,35 @@ do
 
         self.Params.FilterDescendantsInstances = self:GetCollidables()
 
+        local MainHighlight = Instance.new("Highlight", game.CoreGui)
+        MainHighlight.Adornee = c
+        MainHighlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+        MainHighlight.Enabled = true
+
         while true do 
             Elapsed += self.CastStep
             
             local nPos = origin + velocity * Elapsed - Vector3.new(0, .5 * 28 * Elapsed ^ 2, 0)
-            local Result = workspace:Raycast(LastPos, nPos - LastPos, self.Params)
-            LastPos = nPos
+            local a = Grapher.Marker:Clone()
+            a.Parent = workspace
+            a.Position = nPos
+            a.Name = "Marker"
+            table.insert(Grapher.MarkerCache, a)
 
-            if Result then 
-                return Result.Position
-            elseif Elapsed >= self.MaxCast then
-                return
+            if c.Parent ~= workspace or not c:FindFirstChildOfClass("BodyForce") then
+                MainHighlight:Destroy()
+                for i,v in pairs(workspace:GetChildren()) do
+                    if v.Name == "Marker" then v:Destroy() end
+                end
+                break
             end
+            task.wait()
         end
     end
 
     function Grapher:WipeMarkers()
-        for i, Part in pairs(self.MarkerCache) do
-            if Part:IsA("BasePart") or Part:IsA("Highlight") and Part.Parent ~= nil then
-                Part:Destroy()
-                table.remove(self.MarkerCache, i)
-            end
+        for i,v in pairs(workspace:GetChildren()) do
+            if v.Name == "Marker" then v:Destroy() end
         end
     end
 
@@ -403,31 +413,7 @@ do
             if not Grapher.Enabled then return end 
             local con; con = child:GetPropertyChangedSignal("Velocity"):Connect(function()
                 local land = Grapher:GetLanding(child.Position, child.Velocity, child)
-                if land then
-                    local a = Grapher.Marker:Clone()
-                    a.Parent = workspace 
-                    a.Position = land
-                    table.insert(Grapher.MarkerCache, a)
 
-                    local Highlight = Instance.new("Highlight", game.CoreGui)
-                    Highlight.Adornee = a
-                    Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                    Highlight.Enabled = true
-
-                    table.insert(Grapher.MarkerCache, Highlight)
-                    
-                    task.spawn(function()
-                        repeat task.wait() until child.Parent ~= workspace
-                        for i, Part in pairs(Grapher.MarkerCache) do
-                            if Part:IsA("BasePart") or Part:IsA("Highlight") and Part.Parent ~= nil then
-                                Part:Destroy()
-                                table.remove(Grapher.MarkerCache, i)
-                            end
-                        end
-                    end)
-
-                    con:Disconnect()
-                end
             end)
         end
     end)
