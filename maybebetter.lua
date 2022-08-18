@@ -1,15 +1,4 @@
 do
-    local old; old = hookmetamethod(game, "__index", newcclosure(function(b, c)
-        if b == workspace:FindFirstChild("Football") then
-            if string.lower(c) == "position" then
-                --return Vector3.new()
-            elseif string.lower(c) == "randomly" then
-                return old(b, "Position")
-            end
-        end
-    
-        return old(b, c)
-    end))   
         
     local cached = {}
 
@@ -73,12 +62,12 @@ do
     Mags.Distance = 11
     Mags.DistanceOffGround = 15
     Mags.Power = 1
+    Mags.GoodAnimations = false
 
     Mags.KeyCode = Enum.KeyCode.T
 
     function Mags:Validated()
         return Values:WaitForChild("Fumble").Value ~= true and Values:WaitForChild("Status").Value == "InPlay"
-        --return Values:WaitForChild("Status").Value == "InPlay" and Values:WaitForChild("Fumble").Value ~= true 
     end
 
     function Mags:GetParams()
@@ -107,7 +96,7 @@ do
         local CatchRight = Character and Character:FindFirstChild("CatchRight") 
         local CatchLeft = Character and Character:FindFirstChild("CatchLeft")
 
-        local CatchRightDis, CatchLeftDis = CatchRight and (CatchRight.Position - Football["randomly"]).Magnitude or 0, CatchLeft and (CatchLeft.Position - Football["randomly"]).Magnitude or 0   
+        local CatchRightDis, CatchLeftDis = CatchRight and (CatchRight.Position - Football["Position"]).Magnitude or 0, CatchLeft and (CatchLeft.Position - Football["Position"]).Magnitude or 0   
         local Distance = CatchRightDis <= CatchLeftDis and CatchRightDis or CatchLeftDis <= CatchRightDis and CatchLeftDis or 0 
         local Using = CatchRightDis <= CatchLeftDis and CatchRight or CatchLeftDis <= CatchRightDis and CatchLeft
 
@@ -141,12 +130,25 @@ do
                 local Ms = (Now - Starting)
                 local X_Value = (Ms / 10) * math.pi 
                 
-                Football.CanCollide = false
-                firetouchinterest(Character["Left Arm"], Football, 0)
-                firetouchinterest(Character["Right Arm"], Football, 0)
-                task.wait()
-                firetouchinterest(Character["Left Arm"], Football, 1)
-                firetouchinterest(Character["Right Arm"], Football, 1)
+
+                local Humanoid = Client.Character:WaitForChild("Humanoid")
+                local RootC = Client.Character:WaitForChild("HumanoidRootPart")
+                local Angle = math.acos(Humanoid.MoveDirection:Dot((Football.Position - RootC.Position).Unit)) > math.pi / 2
+                if not Angle and Mags.GoodAnimations then
+                    Football.CanCollide = false
+                    firetouchinterest(Character["Left Arm"], Football, 0)
+                    firetouchinterest(Character["Right Arm"], Football, 0)
+                    task.wait()
+                    firetouchinterest(Character["Left Arm"], Football, 1)
+                    firetouchinterest(Character["Right Arm"], Football, 1) 
+                elseif not Mags.GoodAnimations then
+                    Football.CanCollide = false
+                    firetouchinterest(Character["Left Arm"], Football, 0)
+                    firetouchinterest(Character["Right Arm"], Football, 0)
+                    task.wait()
+                    firetouchinterest(Character["Left Arm"], Football, 1)
+                    firetouchinterest(Character["Right Arm"], Football, 1) 
+                end
                 --Football.CFrame = Using.CFrame * CFrame.Angles(X_Value, X_Value, X_Value)
             else 
                 StopLoop()
@@ -167,8 +169,8 @@ do
         for _,v in pairs(workspace:GetChildren()) do
             if v.Name == "Football" then
                 local RootPart = Client.Character and Client.Character.PrimaryPart 
-                local Distance = RootPart and (RootPart.Position - v["randomly"]).Magnitude or 0 
-                local Raycast = workspace:Raycast(v["randomly"], Vector3.new(0, -self.DistanceOffGround, 0), self:GetParams())
+                local Distance = RootPart and (RootPart.Position - v["Position"]).Magnitude or 0 
+                local Raycast = workspace:Raycast(v["Position"], Vector3.new(0, -self.DistanceOffGround, 0), self:GetParams())
 
                 if Distance < ClosestDistance and Distance < self.Distance then
                     if Raycast and Raycast.Instance then
@@ -241,8 +243,8 @@ do
         if Ball and RootPart then
             local Params = Mags:GetParams()
 
-            local Raycast = workspace:Raycast(Ball["randomly"], Vector3.new(0, -self.Distance, 0), Params)
-            if Raycast and Raycast.Instance and (RootPart.Position - Ball["randomly"]).Magnitude < 20 then
+            local Raycast = workspace:Raycast(Ball["Position"], Vector3.new(0, -self.Distance, 0), Params)
+            if Raycast and Raycast.Instance and (RootPart.Position - Ball["Position"]).Magnitude < 20 then
                 return true 
             end
         end
@@ -289,7 +291,7 @@ do
                 local H = C and C:WaitForChild("Humanoid")
                 local F = C and C:WaitForChild("Head")
                 if H and F then 
-                    local H2 = math.abs((F.Position.Y - workspace:FindFirstChild("Football").randomly.Y))
+                    local H2 = math.abs((F.Position.Y - workspace:FindFirstChild("Football").Position.Y))
                     local Yurr = workspace:CalculateJumpPower(workspace.Gravity, H2)
                     Yurr = math.clamp(Yurr, 50, DynamicJump.Max)
                     H.JumpPower = Yurr
@@ -533,6 +535,17 @@ GroupBoxes.Catching.Mags:AddToggle("MagsEnabled", {
 Toggles.MagsEnabled:OnChanged(function()
     Mags.Enabled = Toggles.MagsEnabled.Value 
 end)
+
+GroupBoxes.Catching.Mags:AddToggle("MagsAnimation", {
+    Text = "Good animations",
+    Default = Mags.MagsAnimation,
+    Tooltip = "Enable good animations"
+})
+
+Toggles.MagsAnimation:OnChanged(function()
+    Mags.GoodAnimations = Toggles.MagsAnimation.Value 
+end)
+
 --// 
 GroupBoxes.Catching.Mags:AddSlider("MagsDistance", {
     Text = "Distance",
